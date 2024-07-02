@@ -5,7 +5,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - standard/postgres/**
+      - 'standard/postgres/**'
 
 jobs:
   build_standard_postgres:

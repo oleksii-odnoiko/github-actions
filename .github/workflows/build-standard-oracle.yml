@@ -5,7 +5,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-     - standard/oracle/**
+     - 'standard/oracle/**'
 
 jobs:
   build_standard_oracle:
