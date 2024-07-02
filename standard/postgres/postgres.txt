@@ -1,1 +1,1 @@
-standart postgress
+standard postgress
