@@ -8,7 +8,7 @@ on:
       - standard/postgres/**
 
 jobs:
-  build_and_test:
+  build_standard_postgres:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

@@ -8,7 +8,7 @@ on:
      - standard/oracle/**
 
 jobs:
-  build_and_test:
+  build_standard_oracle:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
