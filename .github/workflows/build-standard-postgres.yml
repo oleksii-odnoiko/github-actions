@@ -1,4 +1,4 @@
-name: Build standard oracle
+name: Build standard postgres
 
 # {1}
 on:
