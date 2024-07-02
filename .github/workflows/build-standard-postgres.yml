@@ -4,7 +4,7 @@ name: Build standard postgres
 on:
   push:
     branches: [ "main" ]
-    paths: standard/postgres
+    paths: standard/postgres/**
 
 jobs:
   build_and_test:
