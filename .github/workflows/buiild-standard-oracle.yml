@@ -4,7 +4,8 @@ name: Build standard oracle
 on:
   push:
     branches: [ "main" ]
-    paths: standard/oracle/**
+    paths:
+     - standard/oracle/**
 
 jobs:
   build_and_test:
