@@ -3,7 +3,7 @@ name: Build standard postgres
 # {1}
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
     paths:
       - 'standard/postgres/**'
 

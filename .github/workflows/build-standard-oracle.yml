@@ -3,9 +3,9 @@ name: Build standard oracle
 # {1}
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
     paths:
-     - 'standard/oracle/**'
+      - 'standard/oracle/**'
 
 jobs:
   build_standard_oracle:
@@ -17,5 +17,5 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
         with:
-            name: standard-oracle
-            path: standard/oracle
+          name: standard-oracle
+          path: standard/oracle
