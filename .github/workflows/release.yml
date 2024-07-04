@@ -24,5 +24,8 @@ jobs:
         uses: cycjimmy/semantic-release-action@v4
         with:
           dry_run: false
+          extra_plugins: |
+            @semantic-release/commit-analyzer
+            @semantic-release/git
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
