@@ -1,0 +1,4 @@
+{
+  "tagFormat: "v${version}",
+  "branches": ["master"]
+}
