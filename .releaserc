@@ -1,4 +1,4 @@
 {
-  "tagFormat: "v${version}",
+  "tagFormat": "v${version}",
   "branches": ["master"]
 }
