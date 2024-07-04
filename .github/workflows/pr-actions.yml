@@ -12,11 +12,8 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.SENSABOT_PAT_TOKEN }}
-
 
       - name: Remove feature branch
         run: |
