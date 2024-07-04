@@ -21,6 +21,7 @@ jobs:
           node-version: '20.11.1'
 
       - name: Semantic Release
+        id: semantic_release
         uses: cycjimmy/semantic-release-action@v4
         with:
           dry_run: false
@@ -30,3 +31,28 @@ jobs:
             @semantic-release/git
         env:
           GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+
+      - name: Archive standard oracle views
+        uses: actions/upload-artifact@v4
+        with:
+          name: standard-oracle-${{ steps.semantic_release.outputs.new_release_version }}
+          path: databases/standard/oracle
+
+
+      - name: Archive standard postgres views
+        uses: actions/upload-artifact@v4
+        with:
+          name: standard-postgres-${{ steps.semantic_release.outputs.new_release_version }}
+          path: databases/standard/postgres
+
+      - name: Archive customer_1 views
+        uses: actions/upload-artifact@v4
+        with:
+          name: custom-customer_1-${{ steps.semantic_release.outputs.new_release_version }}
+          path: databases/custom/customer_1
+
+      - name: Archive customer_2 views
+        uses: actions/upload-artifact@v4
+        with:
+          name: custom-customer_2-${{ steps.semantic_release.outputs.new_release_version }}
+          path: databases/custom/customer_2
