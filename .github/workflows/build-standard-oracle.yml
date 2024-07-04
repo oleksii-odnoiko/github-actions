@@ -5,7 +5,7 @@ on:
   push:
     branches: [ "master" ]
     paths:
-      - 'standard/oracle/**'
+      - 'databases/standard/oracle/**'
 
 jobs:
   build_standard_oracle:
@@ -25,4 +25,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: standard-oracle-${{ steps.branch_name.outputs.SOURCE_TAG }}
-          path: standard/oracle
+          path: databases/standard/oracle

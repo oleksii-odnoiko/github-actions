@@ -24,6 +24,7 @@ jobs:
         uses: cycjimmy/semantic-release-action@v4
         with:
           dry_run: false
+          working_directory: ./databases
           extra_plugins: |
             @semantic-release/commit-analyzer
             @semantic-release/git

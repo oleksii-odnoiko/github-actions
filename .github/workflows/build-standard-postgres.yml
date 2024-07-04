@@ -5,7 +5,7 @@ on:
   push:
     branches: [ "master" ]
     paths:
-      - 'standard/postgres/**'
+      - 'databases/standard/postgres/**'
 
 jobs:
   build_standard_postgres:
@@ -25,4 +25,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: standard-postgres-${{ steps.branch_name.outputs.SOURCE_TAG }}
-          path: standard/postgres
+          path: databases/standard/postgres
