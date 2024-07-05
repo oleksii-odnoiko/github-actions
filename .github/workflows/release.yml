@@ -25,34 +25,43 @@ jobs:
         uses: cycjimmy/semantic-release-action@v4
         with:
           dry_run: false
-          working_directory: ./databases
+          working_directory: ./database
           extra_plugins: |
             @semantic-release/commit-analyzer
             @semantic-release/git
         env:
           GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
 
+
+      - name: New version is published
+        run: echo "New version is published ${{ steps.semantic_release.outputs.new_release_published }}"
+
+
       - name: Archive standard oracle views
         uses: actions/upload-artifact@v4
+        if: steps.semantic_release.outputs.new_release_published == true
         with:
           name: standard-oracle-${{ steps.semantic_release.outputs.new_release_version }}
-          path: databases/standard/oracle
+          path: database/standard/oracle
 
 
       - name: Archive standard postgres views
         uses: actions/upload-artifact@v4
+        if: steps.semantic_release.outputs.new_release_published == true
         with:
           name: standard-postgres-${{ steps.semantic_release.outputs.new_release_version }}
-          path: databases/standard/postgres
+          path: database/standard/postgres
 
       - name: Archive customer_1 views
         uses: actions/upload-artifact@v4
+        if: steps.semantic_release.outputs.new_release_published == true
         with:
           name: custom-customer_1-${{ steps.semantic_release.outputs.new_release_version }}
-          path: databases/custom/customer_1
+          path: database/custom/customer_1
 
       - name: Archive customer_2 views
         uses: actions/upload-artifact@v4
+        if: steps.semantic_release.outputs.new_release_published == true
         with:
           name: custom-customer_2-${{ steps.semantic_release.outputs.new_release_version }}
-          path: databases/custom/customer_2
+          path: database/custom/customer_2
