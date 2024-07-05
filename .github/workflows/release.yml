@@ -39,7 +39,7 @@ jobs:
 
       - name: Archive standard oracle views
         uses: actions/upload-artifact@v4
-        if: steps.semantic_release.outputs.new_release_published == true
+        if: steps.semantic_release.outputs.new_release_published == 'true'
         with:
           name: standard-oracle-${{ steps.semantic_release.outputs.new_release_version }}
           path: database/standard/oracle
@@ -47,21 +47,21 @@ jobs:
 
       - name: Archive standard postgres views
         uses: actions/upload-artifact@v4
-        if: steps.semantic_release.outputs.new_release_published == true
+        if: steps.semantic_release.outputs.new_release_published == 'true'
         with:
           name: standard-postgres-${{ steps.semantic_release.outputs.new_release_version }}
           path: database/standard/postgres
 
       - name: Archive customer_1 views
         uses: actions/upload-artifact@v4
-        if: steps.semantic_release.outputs.new_release_published == true
+        if: steps.semantic_release.outputs.new_release_published == 'true'
         with:
           name: custom-customer_1-${{ steps.semantic_release.outputs.new_release_version }}
           path: database/custom/customer_1
 
       - name: Archive customer_2 views
         uses: actions/upload-artifact@v4
-        if: steps.semantic_release.outputs.new_release_published == true
+        if: steps.semantic_release.outputs.new_release_published == 'true'
         with:
           name: custom-customer_2-${{ steps.semantic_release.outputs.new_release_version }}
           path: database/custom/customer_2
