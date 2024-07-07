@@ -17,18 +17,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - uses: dorny/paths-filter@v3
-        id: filter
-        with:
-          filters: |
-            standard_oracle:
-              - 'database/standard/oracle/**'
-            standard_postgres:
-              - 'database/standard/postgres/**'
-            customer1:
-              - 'database/custom/customer_1/**'
-            customer2:
-              - 'database/custom/customer_2/**'
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -45,6 +33,20 @@ jobs:
             @semantic-release/git
         env:
           GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+
+
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            standard_oracle:
+              - 'database/standard/oracle/**'
+            standard_postgres:
+              - 'database/standard/postgres/**'
+            customer1:
+              - 'database/custom/customer_1/**'
+            customer2:
+              - 'database/custom/customer_2/**'
 
       - name: New version is published
         run: echo "New version is published ${{ steps.semantic_release.outputs.new_release_published }}"
