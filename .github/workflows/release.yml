@@ -25,9 +25,9 @@ jobs:
               - 'database/standard/oracle/**'
             standard_postgres:
               - 'database/standard/postgres/**'
-             customer_1:
+            customer1:
               - 'database/custom/customer_1/**'
-             customer_2:
+            customer2:
               - 'database/custom/customer_2/**'
 
       - name: Setup Node
@@ -68,7 +68,7 @@ jobs:
 
       - name: Archive custom 1 views
         uses: actions/upload-artifact@v4
-        if: steps.filter.outputs.customer_1 == 'true'
+        if: steps.filter.outputs.customer1 == 'true'
         with:
           name: customer-1_${{ steps.semantic_release.outputs.new_release_version }}
           path: database/custom/customer_1
@@ -76,7 +76,7 @@ jobs:
 
       - name: Archive custom 2 views
         uses: actions/upload-artifact@v4
-        if: steps.filter.outputs.customer_2 == 'true'
+        if: steps.filter.outputs.customer2 == 'true'
         with:
           name: customer-2_${{ steps.semantic_release.outputs.new_release_version }}
           path: database/custom/customer_2
