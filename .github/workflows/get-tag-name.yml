@@ -1,0 +1,19 @@
+name: Get tag name
+
+
+on:
+  push:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  get_tag_name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get tag
+        id: tag
+        uses: dawidd6/action-get-tag@v1
+        with:
+          strip_v: true
+      - name: Use tag
+        run: echo ${{steps.tag.outputs.tag}}

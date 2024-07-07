@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  release:
+  release_standard_oracle:
     runs-on: ubuntu-latest
     permissions:
       contents: write

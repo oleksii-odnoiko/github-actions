@@ -1,6 +1,6 @@
 name: Build standard postgres views
 
-# {1}
+
 on:
   push:
     branches: [ "master" ]
@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  release:
+  release_standard_postgres:
     runs-on: ubuntu-latest
     permissions:
       contents: write

@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  release:
+  release_custom_1:
     runs-on: ubuntu-latest
     permissions:
       contents: write
