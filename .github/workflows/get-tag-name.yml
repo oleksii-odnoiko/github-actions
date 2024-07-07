@@ -11,9 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get tag
-        id: tag
-        uses: dawidd6/action-get-tag@v1
-        with:
-          strip_v: true
+        id: get_tag_name
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
       - name: Use tag
-        run: echo ${{steps.tag.outputs.tag}}
+        run: echo ${{steps.get_tag_name.outputs.VERSION}}
