@@ -1,1 +1,1 @@
-standard oracle_5
+standard oracle_6

@@ -1,0 +1,82 @@
+name: Build customer_1 views
+
+on:
+  push:
+    branches: [ 'master' ]
+    paths:
+      - 'database/**'
+  workflow_dispatch:
+
+jobs:
+  release_custom_1:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            standard_oracle:
+              - 'database/standard/oracle/**'
+            standard_postgres:
+              - 'database/standard/postgres/**'
+             customer_1:
+              - 'database/custom/customer_1/**'
+             customer_2:
+              - 'database/custom/customer_2/**'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.11.1'
+
+      - name: Semantic Release
+        id: semantic_release
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          dry_run: false
+          extra_plugins: |
+            @semantic-release/commit-analyzer
+            @semantic-release/git
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+
+      - name: New version is published
+        run: echo "New version is published ${{ steps.semantic_release.outputs.new_release_published }}"
+
+
+      - name: Archive standard oracle views
+        uses: actions/upload-artifact@v4
+        if: steps.filter.outputs.standard_oracle == 'true'
+        with:
+          name: standard-oracle_${{ steps.semantic_release.outputs.new_release_version }}
+          path: database/standard/oracle
+
+
+      - name: Archive standard postgres views
+        uses: actions/upload-artifact@v4
+        if: steps.filter.outputs.standard_postgres == 'true'
+        with:
+          name: standard-postgres_${{ steps.semantic_release.outputs.new_release_version }}
+          path: database/standard/postgres
+
+
+      - name: Archive custom 1 views
+        uses: actions/upload-artifact@v4
+        if: steps.filter.outputs.customer_1 == 'true'
+        with:
+          name: customer-1_${{ steps.semantic_release.outputs.new_release_version }}
+          path: database/custom/customer_1
+
+
+      - name: Archive custom 2 views
+        uses: actions/upload-artifact@v4
+        if: steps.filter.outputs.customer_2 == 'true'
+        with:
+          name: customer-2_${{ steps.semantic_release.outputs.new_release_version }}
+          path: database/custom/customer_2
