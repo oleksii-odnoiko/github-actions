@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  push:
+    branches: [ 'master' ]
+    paths:
+      - 'database/standard/oracle/**'
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.11.1'
+
+      - name: Semantic Release
+        id: semantic_release
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          dry_run: false
+          extra_plugins: |
+            @semantic-release/commit-analyzer
+            @semantic-release/git
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+
+
+      - name: New version is published
+        run: echo "New version is published ${{ steps.semantic_release.outputs.new_release_published }}"
+
+
+      - name: Archive standard oracle views
+        uses: actions/upload-artifact@v4
+        if: steps.semantic_release.outputs.new_release_published == 'true'
+        with:
+          name: standard-oracle-${{ steps.semantic_release.outputs.new_release_version }}
+          path: database/standard/oracle
