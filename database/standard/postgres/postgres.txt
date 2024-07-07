@@ -1,1 +1,1 @@
-standard postgres_6
+standard postgres_7
