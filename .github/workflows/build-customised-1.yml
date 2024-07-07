@@ -40,9 +40,7 @@ jobs:
 
       - name: Archive custom 1 views
         uses: actions/upload-artifact@v4
+        if: steps.semantic_release.outputs.new_release_published == 'true'
         with:
           name: customer_1-${{ steps.semantic_release.outputs.new_release_version }}
           path: database/custom/customer_1
-
-      - name: Download all workflow run artifacts
-        uses: actions/download-artifact@v4
