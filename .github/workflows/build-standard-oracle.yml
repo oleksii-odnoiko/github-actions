@@ -44,3 +44,6 @@ jobs:
         with:
           name: standard-oracle-${{ steps.semantic_release.outputs.new_release_version }}
           path: database/standard/oracle
+
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v4

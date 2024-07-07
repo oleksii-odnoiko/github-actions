@@ -44,3 +44,6 @@ jobs:
         with:
           name: customer_2-${{ steps.semantic_release.outputs.new_release_version }}
           path: database/custom/customer_2
+
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v4

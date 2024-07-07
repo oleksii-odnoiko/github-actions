@@ -5,7 +5,7 @@ on:
   push:
     branches: [ "master" ]
     paths:
-      - 'databases/standard/postgres/**'
+      - 'database/standard/postgres/**'
   workflow_dispatch:
 
 jobs:
@@ -45,3 +45,7 @@ jobs:
         with:
           name: standard-postgres-${{ steps.semantic_release.outputs.new_release_version }}
           path: database/standard/postgres
+
+
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v4
