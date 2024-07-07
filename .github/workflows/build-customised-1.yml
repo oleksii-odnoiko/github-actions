@@ -1,4 +1,4 @@
-name: Release
+name: Build customer_1 views
 
 on:
   push:

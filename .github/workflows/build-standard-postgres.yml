@@ -1,4 +1,4 @@
-name: Build standard postgres
+name: Build standard postgres views
 
 # {1}
 on:
