@@ -10,8 +10,8 @@ jobs:
   get_tag_name:
     runs-on: ubuntu-latest
     steps:
-      - name: Get tag
-        id: get_tag_name
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-      - name: Use tag
-        run: echo ${{steps.get_tag_name.outputs.VERSION}}
+      - name: Get current tag
+        id: get-current-tag
+        uses: zingimmick/github-action-get-current-tag@v1
+      - name: Print tag
+        run: echo ${{steps.get-current-tag.outputs.tag}}
