@@ -1,4 +1,4 @@
-name: Build customer_1 views
+name: Release views
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  release_custom_1:
+  release:
     runs-on: ubuntu-latest
     permissions:
       contents: write
