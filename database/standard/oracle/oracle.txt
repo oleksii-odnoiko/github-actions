@@ -1,1 +1,1 @@
-standard oracle_7
+standard oracle_8
