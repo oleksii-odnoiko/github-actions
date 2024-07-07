@@ -40,7 +40,6 @@ jobs:
 
       - name: Archive custom 2 views
         uses: actions/upload-artifact@v4
-        if: steps.semantic_release.outputs.new_release_published == 'true'
         with:
           name: customer_2-${{ steps.semantic_release.outputs.new_release_version }}
           path: database/custom/customer_2
