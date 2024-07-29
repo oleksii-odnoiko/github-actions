@@ -1,0 +1,43 @@
+name: API - Lint Validate
+
+on:
+  pull_request:
+    paths-ignore:
+      - '.github/CODEOWNERS'
+      - '.husky/**'
+      - '.vscode/**'
+      - '**.md'
+  workflow_dispatch:
+
+jobs:
+  lint-validate:
+    runs-on:
+      group: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate API
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+      - uses: actions/cache@v4
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
+
+      - name: Install project dependencies
+        run: yarn --prefer-offline
+      - name: Run a compile
+        run: yarn test:typecheck
+      - name: Run prettier check
+        run: yarn test:other
+      - name: Run eslint check
+        run: yarn test:code
