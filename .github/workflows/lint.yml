@@ -11,8 +11,7 @@ on:
 
 jobs:
   lint-validate:
-    runs-on:
-      group: ubuntu-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 30
 
     steps:
