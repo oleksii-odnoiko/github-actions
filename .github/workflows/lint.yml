@@ -21,6 +21,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Enable Corepack
+        run: corepack enable
       - name: Setup Latest Yarn
         uses: threeal/setup-yarn-action@v2.0.0
         with:
