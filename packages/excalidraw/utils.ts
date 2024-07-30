@@ -678,13 +678,10 @@ export const arrayToObject = <T>(
   array: readonly T[],
   groupBy?: (value: T) => string,
 ) =>
-  array.reduce(
-    (acc, value) => {
-      acc[groupBy ? groupBy(value) : String(value)] = value;
-      return acc;
-    },
-    {} as { [key: string]: T },
-  );
+  array.reduce((acc, value) => {
+    acc[groupBy ? groupBy(value) : String(value)] = value;
+    return acc;
+  }, {} as { [key: string]: T });
 
 export const isTestEnv = () => import.meta.env.MODE === 'test';
 
@@ -950,8 +947,8 @@ export const isMemberOf = <T extends string>(
   return collection instanceof Set || collection instanceof Map
     ? collection.has(value as T)
     : 'includes' in collection
-      ? collection.includes(value as T)
-      : collection.hasOwnProperty(value);
+    ? collection.includes(value as T)
+    : collection.hasOwnProperty(value);
 };
 
 export const cloneJSON = <T>(obj: T): T => JSON.parse(JSON.stringify(obj));
@@ -1087,24 +1084,22 @@ type HasBrand<T> = {
   [K in keyof T]: K extends `~brand${infer _}` ? true : never;
 }[keyof T];
 
-type RemoveAllBrands<T> =
-  HasBrand<T> extends true
-    ? {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        [K in keyof T as K extends `~brand~${infer _}` ? never : K]: T[K];
-      }
-    : never;
+type RemoveAllBrands<T> = HasBrand<T> extends true
+  ? {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      [K in keyof T as K extends `~brand~${infer _}` ? never : K]: T[K];
+    }
+  : never;
 
 // adapted from https://github.com/colinhacks/zod/discussions/1994#discussioncomment-6068940
 // currently does not cover all types (e.g. tuples, promises...)
-type Unbrand<T> =
-  T extends Map<infer E, infer F>
-    ? Map<E, F>
-    : T extends Set<infer E>
-      ? Set<E>
-      : T extends Array<infer E>
-        ? Array<E>
-        : RemoveAllBrands<T>;
+type Unbrand<T> = T extends Map<infer E, infer F>
+  ? Map<E, F>
+  : T extends Set<infer E>
+  ? Set<E>
+  : T extends Array<infer E>
+  ? Array<E>
+  : RemoveAllBrands<T>;
 
 /**
  * Makes type into a branded type, ensuring that value is assignable to

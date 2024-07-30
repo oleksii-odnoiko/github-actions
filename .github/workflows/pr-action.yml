@@ -15,8 +15,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.HN_PAT_TOKEN }}
+
+      - uses: pnpm/action-setup@v4
 
       - name: Remove feature branch
         run: |

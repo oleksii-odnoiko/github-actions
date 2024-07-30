@@ -42,13 +42,10 @@ const { h } = window;
 export class API {
   static setSelectedElements = (elements: ExcalidrawElement[]) => {
     h.setState({
-      selectedElementIds: elements.reduce(
-        (acc, element) => {
-          acc[element.id] = true;
-          return acc;
-        },
-        {} as Record<ExcalidrawElement['id'], true>,
-      ),
+      selectedElementIds: elements.reduce((acc, element) => {
+        acc[element.id] = true;
+        return acc;
+      }, {} as Record<ExcalidrawElement['id'], true>),
     });
   };
 
@@ -152,16 +149,16 @@ export class API {
   }): T extends 'arrow' | 'line'
     ? ExcalidrawLinearElement
     : T extends 'freedraw'
-      ? ExcalidrawFreeDrawElement
-      : T extends 'text'
-        ? ExcalidrawTextElement
-        : T extends 'image'
-          ? ExcalidrawImageElement
-          : T extends 'frame'
-            ? ExcalidrawFrameElement
-            : T extends 'magicframe'
-              ? ExcalidrawMagicFrameElement
-              : ExcalidrawGenericElement => {
+    ? ExcalidrawFreeDrawElement
+    : T extends 'text'
+    ? ExcalidrawTextElement
+    : T extends 'image'
+    ? ExcalidrawImageElement
+    : T extends 'frame'
+    ? ExcalidrawFrameElement
+    : T extends 'magicframe'
+    ? ExcalidrawMagicFrameElement
+    : ExcalidrawGenericElement => {
     let element: Mutable<ExcalidrawElement> = null!;
 
     const appState = h?.state || getDefaultAppState();

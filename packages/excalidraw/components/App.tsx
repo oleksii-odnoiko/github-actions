@@ -1209,7 +1209,7 @@ class App extends React.Component<AppProps, AppState> {
                           : undefined
                       }
                       src={
-                        src?.type !== 'document' ? (src?.link ?? '') : undefined
+                        src?.type !== 'document' ? src?.link ?? '' : undefined
                       }
                       // https://stackoverflow.com/q/18470015
                       scrolling="no"
@@ -3144,14 +3144,14 @@ class App extends React.Component<AppProps, AppState> {
       typeof opts.position === 'object'
         ? opts.position.clientX
         : opts.position === 'cursor'
-          ? this.lastViewportPosition.x
-          : this.state.width / 2 + this.state.offsetLeft;
+        ? this.lastViewportPosition.x
+        : this.state.width / 2 + this.state.offsetLeft;
     const clientY =
       typeof opts.position === 'object'
         ? opts.position.clientY
         : opts.position === 'cursor'
-          ? this.lastViewportPosition.y
-          : this.state.height / 2 + this.state.offsetTop;
+        ? this.lastViewportPosition.y
+        : this.state.height / 2 + this.state.offsetTop;
 
     const { x, y } = viewportCoordsToSceneCoords(
       { clientX, clientY },
@@ -6260,13 +6260,12 @@ class App extends React.Component<AppProps, AppState> {
       ),
       // we need to duplicate because we'll be updating this state
       lastCoords: { ...origin },
-      originalElements: this.scene.getNonDeletedElements().reduce(
-        (acc, element) => {
+      originalElements: this.scene
+        .getNonDeletedElements()
+        .reduce((acc, element) => {
           acc.set(element.id, deepCopyElement(element));
           return acc;
-        },
-        new Map() as PointerDownState['originalElements'],
-      ),
+        }, new Map() as PointerDownState['originalElements']),
       resize: {
         handleType: false,
         isResizing: false,

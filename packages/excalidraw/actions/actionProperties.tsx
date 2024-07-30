@@ -230,7 +230,7 @@ const changeFontSize = (
       currentItemFontSize:
         newFontSizes.size === 1
           ? [...newFontSizes][0]
-          : (fallbackValue ?? appState.currentItemFontSize),
+          : fallbackValue ?? appState.currentItemFontSize,
     },
     storeAction: StoreAction.CAPTURE,
   };

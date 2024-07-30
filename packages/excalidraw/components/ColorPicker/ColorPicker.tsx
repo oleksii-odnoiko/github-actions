@@ -37,8 +37,8 @@ export const getColor = (color: string): string | null => {
   return isValidColor(`#${color}`)
     ? `#${color}`
     : isValidColor(color)
-      ? color
-      : null;
+    ? color
+    : null;
 };
 
 interface ColorPickerProps {

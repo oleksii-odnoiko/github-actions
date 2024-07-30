@@ -362,8 +362,8 @@ export const exportToSvg = async (
 
     exportingFrameClipPath += `<clipPath id=${frame.id}>
             <rect transform="translate(${frame.x + offsetX} ${
-              frame.y + offsetY
-            }) rotate(${frame.angle} ${cx} ${cy})"
+      frame.y + offsetY
+    }) rotate(${frame.angle} ${cx} ${cy})"
           width="${frame.width}"
           height="${frame.height}"
           >

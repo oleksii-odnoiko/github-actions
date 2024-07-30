@@ -32,7 +32,7 @@ const _ce = ({
     width: w,
     height: h,
     angle: a,
-  }) as ExcalidrawElement;
+  } as ExcalidrawElement);
 
 describe('getElementAbsoluteCoords', () => {
   it('test x1 coordinate', () => {

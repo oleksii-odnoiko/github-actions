@@ -412,8 +412,8 @@ export class LinearElementEditor {
               )
             : selectedPointsIndices
           : selectedPointsIndices?.includes(pointerDownState.lastClickedPoint)
-            ? [pointerDownState.lastClickedPoint]
-            : selectedPointsIndices,
+          ? [pointerDownState.lastClickedPoint]
+          : selectedPointsIndices,
       isDragging: false,
       pointerOffset: { x: 0, y: 0 },
     };
@@ -423,7 +423,7 @@ export class LinearElementEditor {
     element: NonDeleted<ExcalidrawLinearElement>,
     elementsMap: ElementsMap,
     appState: InteractiveCanvasAppState,
-  ): (typeof editorMidPointsCache)['points'] => {
+  ): typeof editorMidPointsCache['points'] => {
     const boundText = getBoundTextElement(element, elementsMap);
 
     // Since its not needed outside editor unless 2 pointer lines or bound text
@@ -534,7 +534,7 @@ export class LinearElementEditor {
       }
     }
     let index = 0;
-    const midPoints: (typeof editorMidPointsCache)['points'] =
+    const midPoints: typeof editorMidPointsCache['points'] =
       LinearElementEditor.getEditorMidPoints(element, elementsMap, appState);
     while (index < midPoints.length) {
       if (midPoints[index] !== null) {
@@ -653,7 +653,7 @@ export class LinearElementEditor {
   } {
     const elementsMap = app.scene.getNonDeletedElementsMap();
 
-    const ret: ReturnType<(typeof LinearElementEditor)['handlePointerDown']> = {
+    const ret: ReturnType<typeof LinearElementEditor['handlePointerDown']> = {
       didAddPoint: false,
       hitElement: null,
       linearElementEditor: null,

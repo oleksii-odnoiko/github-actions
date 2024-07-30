@@ -340,8 +340,8 @@ export const getContextMenuLabel = (
       ? 'labels.link.editEmbed'
       : 'labels.link.edit'
     : isEmbeddableElement(selectedElements[0])
-      ? 'labels.link.createEmbed'
-      : 'labels.link.create';
+    ? 'labels.link.createEmbed'
+    : 'labels.link.create';
   return label;
 };
 

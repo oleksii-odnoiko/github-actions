@@ -44,8 +44,9 @@ export type ForwardRef<T, P = any> = Parameters<
   CallableType<React.ForwardRefRenderFunction<T, P>>
 >[1];
 
-export type ExtractSetType<T extends Set<any>> =
-  T extends Set<infer U> ? U : never;
+export type ExtractSetType<T extends Set<any>> = T extends Set<infer U>
+  ? U
+  : never;
 
 export type SameType<T, U> = T extends U ? (U extends T ? true : false) : false;
 export type Assert<T extends true> = T;

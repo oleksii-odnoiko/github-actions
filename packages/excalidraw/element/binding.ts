@@ -834,9 +834,9 @@ const newBoundElements = (
   nextBoundElements.push(
     ...elementsToAdd.map(
       (x) =>
-        ({ id: x.id, type: x.type }) as
+        ({ id: x.id, type: x.type } as
           | ExcalidrawArrowElement
-          | ExcalidrawTextElement,
+          | ExcalidrawTextElement),
     ),
   );
 

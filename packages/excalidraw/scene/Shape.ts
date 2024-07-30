@@ -60,8 +60,8 @@ export const generateRoughOptions = (
       element.strokeStyle === 'dashed'
         ? getDashArrayDashed(element.strokeWidth)
         : element.strokeStyle === 'dotted'
-          ? getDashArrayDotted(element.strokeWidth)
-          : undefined,
+        ? getDashArrayDotted(element.strokeWidth)
+        : undefined,
     // for non-solid strokes, disable multiStroke because it tends to make
     // dashes/dots overlay each other
     disableMultiStroke: element.strokeStyle !== 'solid',
@@ -352,20 +352,20 @@ export const _generateElementShape = (
             rightX - verticalRadius
           } ${rightY - horizontalRadius}
             C ${rightX} ${rightY}, ${rightX} ${rightY}, ${
-              rightX - verticalRadius
-            } ${rightY + horizontalRadius}
+            rightX - verticalRadius
+          } ${rightY + horizontalRadius}
             L ${bottomX + verticalRadius} ${bottomY - horizontalRadius}
             C ${bottomX} ${bottomY}, ${bottomX} ${bottomY}, ${
-              bottomX - verticalRadius
-            } ${bottomY - horizontalRadius}
+            bottomX - verticalRadius
+          } ${bottomY - horizontalRadius}
             L ${leftX + verticalRadius} ${leftY + horizontalRadius}
             C ${leftX} ${leftY}, ${leftX} ${leftY}, ${leftX + verticalRadius} ${
-              leftY - horizontalRadius
-            }
+            leftY - horizontalRadius
+          }
             L ${topX - verticalRadius} ${topY + horizontalRadius}
             C ${topX} ${topY}, ${topX} ${topY}, ${topX + verticalRadius} ${
-              topY + horizontalRadius
-            }`,
+            topY + horizontalRadius
+          }`,
           generateRoughOptions(element, true),
         );
       } else {

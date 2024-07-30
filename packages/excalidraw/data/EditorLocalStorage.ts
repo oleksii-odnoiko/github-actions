@@ -2,7 +2,7 @@ import type { EDITOR_LS_KEYS } from '../constants';
 import type { JSONValue } from '../types';
 
 export class EditorLocalStorage {
-  static has(key: (typeof EDITOR_LS_KEYS)[keyof typeof EDITOR_LS_KEYS]) {
+  static has(key: typeof EDITOR_LS_KEYS[keyof typeof EDITOR_LS_KEYS]) {
     try {
       return !!window.localStorage.getItem(key);
     } catch (error: any) {
@@ -12,7 +12,7 @@ export class EditorLocalStorage {
   }
 
   static get<T extends JSONValue>(
-    key: (typeof EDITOR_LS_KEYS)[keyof typeof EDITOR_LS_KEYS],
+    key: typeof EDITOR_LS_KEYS[keyof typeof EDITOR_LS_KEYS],
   ) {
     try {
       const value = window.localStorage.getItem(key);
@@ -27,7 +27,7 @@ export class EditorLocalStorage {
   }
 
   static set = (
-    key: (typeof EDITOR_LS_KEYS)[keyof typeof EDITOR_LS_KEYS],
+    key: typeof EDITOR_LS_KEYS[keyof typeof EDITOR_LS_KEYS],
     value: JSONValue,
   ) => {
     try {
@@ -40,7 +40,7 @@ export class EditorLocalStorage {
   };
 
   static delete = (
-    name: (typeof EDITOR_LS_KEYS)[keyof typeof EDITOR_LS_KEYS],
+    name: typeof EDITOR_LS_KEYS[keyof typeof EDITOR_LS_KEYS],
   ) => {
     try {
       window.localStorage.removeItem(name);

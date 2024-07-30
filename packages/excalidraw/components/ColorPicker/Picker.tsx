@@ -74,10 +74,10 @@ export const Picker = ({
         isCustomButNotInList
           ? 'hex'
           : isCustom
-            ? 'custom'
-            : colorObj?.shade != null
-              ? 'shades'
-              : 'baseColors',
+          ? 'custom'
+          : colorObj?.shade != null
+          ? 'shades'
+          : 'baseColors',
       );
     }
   }, [

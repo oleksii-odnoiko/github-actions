@@ -37,7 +37,7 @@ export interface ClipboardData {
   programmaticAPI?: boolean;
 }
 
-type AllowedPasteMimeTypes = (typeof ALLOWED_PASTE_MIME_TYPES)[number];
+type AllowedPasteMimeTypes = typeof ALLOWED_PASTE_MIME_TYPES[number];
 
 type ParsedClipboardEvent =
   | { type: 'text'; value: string }

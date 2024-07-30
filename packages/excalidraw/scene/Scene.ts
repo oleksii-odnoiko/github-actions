@@ -62,7 +62,7 @@ const hashSelectionOpts = (
   type _ = Assert<
     SameType<
       Required<HashableKeys>,
-      Pick<Required<HashableKeys>, (typeof keys)[number]>
+      Pick<Required<HashableKeys>, typeof keys[number]>
     >
   >;
 
